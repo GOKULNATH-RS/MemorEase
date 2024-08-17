@@ -6,20 +6,24 @@ export const ThemeContext = createContext()
 export const ThemeContextProvider = ({ children }) => {
   const [theme, setTheme] = useState('dark')
   const [active, setActive] = useState('gallery')
+  const [mobileMenu, setMobileMenu] = useState(false)
 
   const toggleTheme = () => {
-    console.log('toggleTheme')
-
     setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'))
   }
 
+  const setMobileMenufn = () => {
+    setMobileMenu((value) => !value)
+  }
   return (
     <ThemeContext.Provider
       value={{
         theme,
         toggleTheme,
         active,
-        setActive
+        setActive,
+        mobileMenu,
+        setMobileMenufn
       }}
     >
       {children}

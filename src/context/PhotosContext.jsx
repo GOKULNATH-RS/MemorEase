@@ -12,13 +12,12 @@ export const PhotosProvider = ({ children }) => {
     axios
       .get(`${import.meta.env.VITE_SERVER_URL}/photos`)
       .then((res) => {
-        console.log(res.data)
         setPhotos(res.data)
       })
       .catch((err) => {
         console.log(err)
       })
-  }, [photos])
+  }, [])
   const toggleTheme = () => {
     setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'))
   }
