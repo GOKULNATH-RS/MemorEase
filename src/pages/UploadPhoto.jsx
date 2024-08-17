@@ -6,6 +6,7 @@ import { ref, getDownloadURL, uploadBytes } from 'firebase/storage'
 import { useNavigate } from 'react-router-dom'
 import { usePhotos } from '../context/PhotosContext'
 import { v4 } from 'uuid'
+import { useTheme } from '../context/ThemeContext'
 
 const UploadPhoto = () => {
   const [title, setTitle] = useState('')
@@ -13,6 +14,7 @@ const UploadPhoto = () => {
   const [photo, setPhoto] = useState(null)
   const navigate = useNavigate()
   const { addPhotos } = usePhotos()
+  const { theme } = useTheme()
 
   const handleUpload = (e) => {
     e.preventDefault()
@@ -42,7 +44,13 @@ const UploadPhoto = () => {
       <div className='flex-center max-sm:flex-col gap-8 max-sm:gap-2 '>
         <div>
           <label htmlFor='file-upload'>
-            <div className='h-72 w-[450px] max-sm:h-60 max-sm:w-[350px] flex-center border border-dashed border-opacity-20 border-white bg-white bg-opacity-5 hover:bg-opacity-10 rounded-xl'>
+            <div
+              className={`h-72 w-[450px] max-sm:h-60 max-sm:w-[350px] flex-center border border-dashed border-opacity-20 ${
+                theme === 'dark'
+                  ? 'border-white bg-white'
+                  : 'border-black bg-black'
+              }  bg-opacity-5 hover:bg-opacity-10 rounded-xl`}
+            >
               <div className='flex-center flex-col opacity-35'>
                 {photo ? (
                   <></>
@@ -88,7 +96,11 @@ const UploadPhoto = () => {
               id='title'
               onChange={(e) => setTitle(e.target.value)}
               placeholder='Enter Photo Title'
-              className='px-4 py-2 rounded-lg  border border-white bg-transparent placeholder:font-light placeholder:opacity-30 focus:outline-none focus:border-primary'
+              className={`px-4 py-2 rounded-lg  border ${
+                theme === 'dark'
+                  ? 'border-white'
+                  : 'border-black border-opacity-40 placeholder:text-black'
+              } bg-transparent placeholder:font-light placeholder:opacity-30 focus:outline-none focus:border-primary`}
             />
           </div>
           <div className='flex flex-col gap-2 w-80 my-2'>
@@ -100,7 +112,11 @@ const UploadPhoto = () => {
               rows={'4'}
               onChange={(e) => setDescription(e.target.value)}
               placeholder='Enter Photo Description'
-              className='px-4 py-2 w- rounded-lg h-32 border border-white bg-transparent placeholder:font-light placeholder:opacity-30 focus:outline-none focus:border-primary'
+              className={`px-4 py-2 w- rounded-lg h-32 border ${
+                theme === 'dark'
+                  ? 'border-white'
+                  : 'border-black border-opacity-40 placeholder:text-black'
+              } bg-transparent placeholder:font-light placeholder:opacity-30 focus:outline-none focus:border-primary`}
             />
           </div>
           <button

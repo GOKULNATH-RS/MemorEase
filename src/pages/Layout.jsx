@@ -1,9 +1,15 @@
 import { Outlet } from 'react-router-dom'
 import NavBar from '../components/NavBar'
+import { useTheme } from '../context/ThemeContext'
 
 const Layout = () => {
+  const { theme } = useTheme()
   return (
-    <div className='text-white bg-black min-h-screen pb-10'>
+    <div
+      className={`${
+        theme === 'dark' ? 'text-white bg-black' : 'bg-white text-black '
+      } min-h-screen pb-10`}
+    >
       <NavBar />
       <Outlet />
     </div>
