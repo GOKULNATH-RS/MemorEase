@@ -3,6 +3,7 @@ const { Router } = require('express')
 
 const router = Router()
 
-router.post('/upload', UploadPhotoController.UploadPhoto)
+router.post('/photos', UploadPhotoController.UploadPhoto)
+router.get('/photos', UploadPhotoController.GetPhotos)
 
 module.exports = router

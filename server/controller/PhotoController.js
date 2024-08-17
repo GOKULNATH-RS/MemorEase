@@ -17,4 +17,13 @@ const UploadPhoto = async (req, res) => {
   }
 }
 
-module.exports = { UploadPhoto }
+const GetPhotos = async (req, res) => {
+  try {
+    const photos = await Photo.find()
+    res.status(200).json(photos)
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to get photos', error })
+  }
+}
+
+module.exports = { UploadPhoto, GetPhotos }

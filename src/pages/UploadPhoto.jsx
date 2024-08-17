@@ -28,12 +28,12 @@ const UploadPhoto = () => {
           console.log('server', import.meta.env.SERVER_URL)
           addPhotos(newPhoto)
           axios
-            .post(`${import.meta.env.VITE_SERVER_URL}/upload`, {
+            .post(`${import.meta.env.VITE_SERVER_URL}/photos`, {
               url,
               title,
               description
             })
-            .then(navigate('/gallery'))
+            .then(navigate('/'))
         })
       }),
       {

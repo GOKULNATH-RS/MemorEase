@@ -9,11 +9,11 @@ const Gallery = () => {
       <h1 className='heading'>Gallery Page</h1>
       <div className='flex flex-wrap max-sm:justify-center'>
         {photos.map((photo, i) => (
-          <Link to={`/photo/${photo.id}`} key={i}>
+          <Link to={`/photo/${photo?._id}`} key={i}>
             <Image
-              src={photo.url}
-              title={photo.title}
-              description={photo.description}
+              src={photo?.url}
+              title={photo?.title}
+              description={photo?.description}
             />
           </Link>
         ))}

@@ -15,7 +15,7 @@ const PhotoDetails = () => {
     description: ''
   })
   useEffect(() => {
-    const photo = photos.find((photo) => photo.id === id)
+    const photo = photos.find((photo) => photo._id === id)
     setPhoto(photo)
   }, [id, photos])
 
@@ -63,7 +63,7 @@ const PhotoDetails = () => {
       </nav>
       <div className='relative max-sm:py-6'>
         <Link
-          to={'/gallery'}
+          to={'/'}
           className='absolute top-0 left-0 rounded-lg h-10 px-4 py-2 flex-center hover:text-primary duration-100'
         >
           {'<- Back to Gallery'}
@@ -72,7 +72,7 @@ const PhotoDetails = () => {
       </div>
       <div className='px-4 flex max-sm:flex-col-reverse '>
         <div className='flex-[0.3] p-4 flex flex-col justify-center'>
-          <p className='text-4xl font-bold m-4'>{currPhoto.title}</p>
+          <p className='text-4xl font-bold m-4'>{currPhoto?.title}</p>
           <div>
             <p
               className={`text-xl font-semibold my-2 mx-4 ${
@@ -81,17 +81,17 @@ const PhotoDetails = () => {
             >
               Description
             </p>
-            <p className='text-md mx-4 min-h-60'>{currPhoto.description}</p>
+            <p className='text-md mx-4 min-h-60'>{currPhoto?.description}</p>
           </div>
           <button
-            onClick={() => saveAs(currPhoto.url, `${currPhoto.title}.jpg`)}
+            onClick={() => saveAs(currPhoto?.url, `${currPhoto?.title}.jpg`)}
             className='bg-secondary text-white  border-[1px] border-primary border-opacity-20 rounded-lg flex-center px-4 py-2 m-4 hover:bg-black duration-200'
           >
             Download Photo
           </button>
         </div>
         <div className='flex-[0.7] flex-center p-2  h-[550px]'>
-          <img src={currPhoto.url} alt='' className='rounded-sm h-full' />
+          <img src={currPhoto?.url} alt='' className='rounded-sm h-full' />
         </div>
       </div>
     </div>
