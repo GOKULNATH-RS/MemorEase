@@ -1,5 +1,3 @@
-# Photo App
+# MemorEase
 
-TODO:
-
--
+**MemorEase** 📸 is an advanced photo management app designed to make organizing, viewing, and managing your photos effortless and enjoyable. Users can easily upload photos using a streamlined form that includes options for selecting a file, entering a title, and adding a description. Photos are securely stored in Firebase Storage, ensuring reliable and scalable cloud storage. The gallery page displays all uploaded photos in a visually appealing format, showing thumbnails along with titles and descriptions. Users can click on any photo to navigate to its full-size view on the Photo Details Page, which also includes a convenient back button to return to the gallery. The app is styled with a modern, responsive design and offers customizable themes, including light and dark modes, to enhance user experience across different devices. With MemorEase, photo management is both functional and aesthetically pleasing, making it easy to keep your memories well-organized and accessible. 🌟📷

@@ -8,7 +8,7 @@ const Layout = () => {
     <div
       className={`${
         theme === 'dark' ? 'text-white bg-black' : 'bg-white text-black '
-      } min-h-screen pb-10`}
+      } min-h-screen pb-10 `}
     >
       <NavBar />
       <Outlet />
