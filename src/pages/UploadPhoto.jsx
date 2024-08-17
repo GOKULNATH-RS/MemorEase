@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { usePhotos } from '../context/PhotosContext'
 import { v4 } from 'uuid'
 import { useTheme } from '../context/ThemeContext'
+import axios from 'axios'
 
 const UploadPhoto = () => {
   const [title, setTitle] = useState('')
@@ -21,13 +22,19 @@ const UploadPhoto = () => {
 
     toast.promise(
       uploadBytes(ref(storage, photo.name), photo).then((snapshot) => {
-        getDownloadURL(snapshot.ref)
-          .then((url) => {
-            const newPhoto = { id: v4(), url, title, description }
-            console.log(newPhoto)
-            addPhotos(newPhoto)
-          })
-          .then(navigate('/gallery'))
+        getDownloadURL(snapshot.ref).then((url) => {
+          const newPhoto = { id: v4(), url, title, description }
+          console.log(newPhoto)
+          console.log('server', import.meta.env.SERVER_URL)
+          addPhotos(newPhoto)
+          axios
+            .post(`${import.meta.env.VITE_SERVER_URL}/upload`, {
+              url,
+              title,
+              description
+            })
+            .then(navigate('/gallery'))
+        })
       }),
       {
         loading: 'Uploading photo...',
