@@ -5,6 +5,7 @@ export const ThemeContext = createContext()
 // eslint-disable-next-line react/prop-types
 export const ThemeContextProvider = ({ children }) => {
   const [theme, setTheme] = useState('dark')
+  const [active, setActive] = useState('gallery')
 
   const toggleTheme = () => {
     console.log('toggleTheme')
@@ -16,7 +17,9 @@ export const ThemeContextProvider = ({ children }) => {
     <ThemeContext.Provider
       value={{
         theme,
-        toggleTheme
+        toggleTheme,
+        active,
+        setActive
       }}
     >
       {children}

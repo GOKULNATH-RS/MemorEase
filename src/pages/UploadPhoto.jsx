@@ -15,7 +15,7 @@ const UploadPhoto = () => {
   const [photo, setPhoto] = useState(null)
   const navigate = useNavigate()
   const { addPhotos } = usePhotos()
-  const { theme } = useTheme()
+  const { theme, setActive } = useTheme()
 
   const handleUpload = (e) => {
     e.preventDefault()
@@ -33,7 +33,7 @@ const UploadPhoto = () => {
               title,
               description
             })
-            .then(navigate('/'))
+            .then(setActive('gallery'), navigate('/'))
         })
       }),
       {

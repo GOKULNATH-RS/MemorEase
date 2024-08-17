@@ -7,9 +7,8 @@ const NavBar = () => {
     { title: 'Gallery', path: '/' },
     { title: 'Upload', path: '/upload' }
   ]
-  const [active, setActive] = useState('gallery')
 
-  const { theme, toggleTheme } = useTheme()
+  const { theme, toggleTheme, active, setActive } = useTheme()
 
   return (
     <nav className='h-16 flex justify-between items-center px-6'>
@@ -40,13 +39,13 @@ const NavBar = () => {
           </svg>
         )}
         <p>
-          Photo
+          Memor
           <span
             className={`${
               theme === 'dark' ? 'text-primary' : 'text-black'
             } m-0 p-0`}
           >
-            App
+            Ease
           </span>
         </p>
       </Link>

@@ -21,9 +21,9 @@ const PhotoDetails = () => {
 
   return (
     <div
-      className={`${
+      className={`min-h-screen no-scrollbar ${
         theme === 'dark' ? 'text-white bg-black' : 'bg-white text-black'
-      } min-h-screen`}
+      } `}
     >
       <nav className='h-16 flex justify-between items-center px-6'>
         <h1>Photo App</h1>
