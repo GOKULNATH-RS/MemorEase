@@ -71,17 +71,19 @@ const PhotoDetails = () => {
         <h1 className='heading self-center'>Photo Details Page</h1>
       </div>
       <div className='px-4 flex max-sm:flex-col-reverse '>
-        <div className='flex-[0.3] p-4 flex flex-col justify-center'>
+        <div className='flex-[0.3]  p-4 flex flex-col justify-center'>
           <p className='text-4xl font-bold m-4'>{currPhoto?.title}</p>
-          <div>
+          <div className='w-full '>
             <p
-              className={`text-xl font-semibold my-2 mx-4 ${
+              className={`text-xl font-semibold my-2 mx-4 w-32  ${
                 theme === 'dark' ? 'text-primary' : 'text-black'
               }`}
             >
               Description
             </p>
-            <p className='text-md mx-4 min-h-60'>{currPhoto?.description}</p>
+            <p className='text-md max-w-96 overflow-hidden mx-4 min-h-60'>
+              {currPhoto?.description}
+            </p>
           </div>
           <button
             onClick={() => saveAs(currPhoto?.url, `${currPhoto?.title}.jpg`)}
