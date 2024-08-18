@@ -1,11 +1,12 @@
 import axios from 'axios'
 import { createContext, useContext, useEffect, useState } from 'react'
+import { initialLoadPhotos } from '../constants/utils'
 
 export const PhotosContext = createContext()
 
 // eslint-disable-next-line react/prop-types
 export const PhotosProvider = ({ children }) => {
-  const [photos, setPhotos] = useState([])
+  const [photos, setPhotos] = useState(initialLoadPhotos)
   const [theme, setTheme] = useState('dark')
 
   useEffect(() => {
