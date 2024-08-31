@@ -6,8 +6,11 @@ import { useTheme } from '../context/ThemeContext'
 
 const PhotoDetails = () => {
   const { id } = useParams()
-  const { photos } = usePhotos()
+  const { photos, setPhotos } = usePhotos()
   const { theme, toggleTheme } = useTheme()
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [editable, setEditable] = useState(false)
 
   const [currPhoto, setPhoto] = useState({
     url: '',
@@ -15,9 +18,25 @@ const PhotoDetails = () => {
     description: ''
   })
   useEffect(() => {
-    const photo = photos.find((photo) => photo._id === id)
+    const photo = photos.find((photo) => photo?._id === id)
+    setTitle(photo?.title)
     setPhoto(photo)
+    setDescription(photo?.description)
   }, [id, photos])
+
+  function handleEdit() {
+    const updatedPhotos = photos.map((photo) => {
+      if (photo._id === id) {
+        photo.title = title
+        photo.description = description
+      }
+
+      return photo
+    })
+
+    setPhotos(updatedPhotos)
+    setEditable(false)
+  }
 
   return (
     <div
@@ -108,7 +127,36 @@ const PhotoDetails = () => {
       </div>
       <div className='px-4 flex max-sm:flex-col-reverse '>
         <div className='flex-[0.3]  p-4 flex flex-col justify-center'>
-          <p className='text-4xl font-bold m-4'>{currPhoto?.title}</p>
+          <div className='flex justify-between flex-col-reverse'>
+            <p className='text-4xl font-bold m-4'>
+              {
+                <input
+                  type='text'
+                  name='title'
+                  id='title'
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  disabled={!editable}
+                  className={`text-4xl font-bold m-4 bg-transparent ${
+                    editable ? 'border-white/20 border-[1px] rounded-md' : ''
+                  }`}
+                />
+              }
+            </p>
+            <button
+              className={`py-1 px-2 rounded-lg w-max  border-[1px] border-primary border-opacity-20 ${
+                theme === 'dark' ? 'text-white bg-black' : 'text-black bg-white'
+              }`}
+              onClick={() => {
+                if (editable) {
+                  handleEdit()
+                }
+                setEditable(!editable)
+              }}
+            >
+              {editable ? 'Save' : 'Edit'}
+            </button>
+          </div>
           <div className='w-full '>
             <p
               className={`text-xl font-semibold my-2 mx-4 w-32  ${
@@ -117,8 +165,26 @@ const PhotoDetails = () => {
             >
               Description
             </p>
+
             <p className='text-md max-w-96 overflow-hidden mx-4 min-h-60'>
-              {currPhoto?.description}
+              {editable ? (
+                <textarea
+                  name='desc'
+                  id='desc'
+                  cols={30}
+                  rows={10}
+                  value={description}
+                  className={`my-2 w-full h-full bg-transparent ${
+                    editable && 'border-[1px] border-white/20'
+                  }`}
+                  disabled={!editable}
+                  onChange={(e) => setDescription(e.target.value)}
+                >
+                  {currPhoto?.description}
+                </textarea>
+              ) : (
+                currPhoto?.description
+              )}
             </p>
           </div>
           <button

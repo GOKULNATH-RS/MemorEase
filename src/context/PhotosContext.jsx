@@ -7,7 +7,8 @@ export const PhotosContext = createContext()
 // eslint-disable-next-line react/prop-types
 export const PhotosProvider = ({ children }) => {
   const [photos, setPhotos] = useState(initialLoadPhotos)
-  const [theme, setTheme] = useState('dark')
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
 
   useEffect(() => {
     axios
@@ -19,8 +20,13 @@ export const PhotosProvider = ({ children }) => {
         console.log(err)
       })
   }, [])
-  const toggleTheme = () => {
-    setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'))
+
+  function handleEditTitle(value) {
+    setTitle(value)
+  }
+
+  function handleDescription(value) {
+    setDescription(value)
   }
 
   const addPhotos = (newPhotos) => {
@@ -28,7 +34,17 @@ export const PhotosProvider = ({ children }) => {
   }
 
   return (
-    <PhotosContext.Provider value={{ photos, theme, toggleTheme, addPhotos }}>
+    <PhotosContext.Provider
+      value={{
+        photos,
+        setPhotos,
+        addPhotos,
+        title,
+        handleEditTitle,
+        description,
+        handleDescription
+      }}
+    >
       {children}
     </PhotosContext.Provider>
   )

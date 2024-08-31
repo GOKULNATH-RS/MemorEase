@@ -4,6 +4,7 @@ import { usePhotos } from '../context/PhotosContext'
 
 const Gallery = () => {
   const { photos } = usePhotos()
+
   return (
     <div className='no-scrollbar px-8'>
       <h1 className='heading'>Gallery Page</h1>
