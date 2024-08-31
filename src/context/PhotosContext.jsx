@@ -14,7 +14,10 @@ export const PhotosProvider = ({ children }) => {
     axios
       .get(`${import.meta.env.VITE_SERVER_URL}/photos`)
       .then((res) => {
-        setPhotos(res.data)
+        res.json()
+      })
+      .then((data) => {
+        setPhotos(data)
       })
       .catch((err) => {
         console.log(err)
