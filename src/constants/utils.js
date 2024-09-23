@@ -56,7 +56,7 @@ export const initialLoadPhotos = [
     title: 'Zenitsu Agatsuma ⚡',
     description:
       "Zenitsu Agatsuma ⚡ is a character from the anime and manga series *Demon Slayer: Kimetsu no Yaiba*. He's one of the main protagonists and a member of the Demon Slayer Corps. Known for his lightning-fast combat skills and fearful personality, Zenitsu wields the Thunder Breathing techniques. Despite his frequent anxiety and self-doubt, he has moments of remarkable bravery and skill. His character adds both humor and depth to the series. 🌩️🗡️",
-    url: 'https://firebasestorage.googleapis.com/v0/b/photo-management-app-17909.appspot.com/o/zen.jpg?alt=media&token=e4e25bf5-52eb-4e06-8f42-0c132dfd24a6',
+    url: 'https://firebasestorage.googleapis.com/v0/b/photo-management-app-17909.appspot.com/o/zen.jpg?alt=media&token=fb079873-3639-4f55-a5df-01bf6b2428d2',
     __v: 0
   },
   {
